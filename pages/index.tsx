@@ -13,13 +13,14 @@ import { useState } from "react";
 const Home: NextPage = () => {
   const [query, setQuery] = useState("");
 
-  const { data, fetchNextPage, isLoading, isFetching, error } = useFetchMovies(query);
+  const { data, fetchNextPage, isLoading, isFetching, error } =
+    useFetchMovies(query);
 
-  console.log(data)
+  console.log(data);
 
   return (
     <main className="relative h-screen overflow-y-scroll">
-      <Header></Header>
+      <Header setQuery={setQuery}></Header>
       <Hero></Hero>
       <Grid></Grid>
       <Card></Card>
