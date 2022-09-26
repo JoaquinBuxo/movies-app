@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import type { NextPage } from "next";
 
 import { useFetchMovies } from "../api/fetchHooks";
@@ -9,18 +10,25 @@ import Grid from "../components/Grid/Grid";
 import Card from "../components/Card/Card";
 import Spinner from "../components/Spinner/Spinner";
 
-import { useState } from "react";
-
 const Home: NextPage = () => {
   const [query, setQuery] = useState("");
 
   const { data, fetchNextPage, isLoading, isFetching, error } =
     useFetchMovies(query);
 
-  console.log(data);
+  const handleScroll = (e: React.UIEvent<HTMLElement>) => {
+    const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
+
+    if (scrollHeight - scrollTop === clientHeight) {
+      fetchNextPage();
+    }
+  };
 
   return (
-    <main className="relative h-screen overflow-y-scroll">
+    <main
+      className="relative h-screen overflow-y-scroll"
+      onScroll={handleScroll}
+    >
       <Header setQuery={setQuery}></Header>
       {!query && data && data.pages && (
         <Hero
@@ -60,7 +68,8 @@ const Home: NextPage = () => {
             ))
           )}
       </Grid>
-      <Spinner></Spinner>
+
+      {isLoading || (isFetching && <Spinner />)}
     </main>
   );
 };

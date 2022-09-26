@@ -12,7 +12,7 @@ export default async function handler(
 
   const endpoint = search
     ? `${SEARCH_BASE_URL}${search}&page=${page}`
-    : `${POPULAR_BASE_URL}&{page}`;
+    : `${POPULAR_BASE_URL}&page=${page}`;
 
   const data = await basicFetch<Movies>(endpoint);
 
