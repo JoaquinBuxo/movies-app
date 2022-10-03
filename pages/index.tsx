@@ -25,6 +25,8 @@ const Home: NextPage = () => {
     }
   };
 
+  if (error) return <div>Sorry, seems like something went wrong!</div>;
+
   return (
     <main
       className="relative h-screen overflow-y-scroll"
