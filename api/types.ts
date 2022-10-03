@@ -6,12 +6,12 @@ export type Movie = {
   popularity: number;
   poster_path: string;
   title: string;
-  vote_avergade: number;
+  vote_average: number;
   vote_count: number;
   budget: number;
   runtime: number;
   revenue: number;
-  realease_date: string;
+  release_date: string;
 };
 
 export type Movies = {
@@ -19,4 +19,23 @@ export type Movies = {
   results: Movie[];
   total_pages: number;
   total_results: number;
+};
+
+export type Cast = {
+  character: SVGStringList;
+  credit_id: string;
+  name: string;
+  profile_path: string;
+};
+
+export type Crew = {
+  job: string;
+  name: string;
+  credit_id: number;
+};
+
+export type Credits = {
+  id: number;
+  cast: Cast[];
+  crew: Crew[];
 };
